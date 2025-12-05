@@ -11,12 +11,16 @@ app.use(express.urlencoded());
 
 initDB();
 
+app.get("/", (req: Request, res: Response) => {
+  res.status(200).json({ message: "Hello world" });
+});
+
 app.use("/users", userRouter);
 app.use("/todos", todoRouter);
 app.use("/auth", authRouter);
 
 app.use((req: Request, res: Response) => {
-  res.status(404).json({message: "Route not found!"});
-})
+  res.status(404).json({ message: "Route not found!" });
+});
 
 export default app;
